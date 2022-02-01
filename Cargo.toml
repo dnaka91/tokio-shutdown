@@ -1,0 +1,38 @@
+[package]
+name = "tokio-shutdown"
+version = "0.1.0"
+authors = ["Dominik Nakamura <dnaka91@gmail.com>"]
+edition = "2021"
+rust-version = "1.58"
+license = "MIT"
+readme = "README.md"
+description = "Wait for a stop signal across multiple threads"
+homepage = "https://github.com/dnaka91/tokio-shutdown"
+repository = "https://github.com/dnaka91/tokio-shutdown"
+categories = ["asynchronous", "concurrency", "os", "web-programming"]
+keywords = ["async", "futures", "signal", "tokio", "web"]
+include = ["src/**/*", "CHANGELOG.md", "LICENSE", "README.md"]
+
+[[bin]]
+name = "test_fixture"
+test = false
+
+[features]
+default = ["tracing"]
+
+[dependencies]
+tokio = { version = "1.16.1", features = ["macros", "rt", "signal", "sync"] }
+tracing = { version = "0.1.29", optional = true }
+
+[target.'cfg(unix)'.dev-dependencies]
+nix = "0.23.1"
+
+[target.'cfg(windows)'.dev-dependencies]
+winapi = { version = "0.3.9", features = ["consoleapi", "wincon", "wincontypes"] }
+
+[dev-dependencies]
+anyhow = "1.0.53"
+async-stream = "0.3.2"
+axum = "0.4.4"
+futures-util = "0.3.19"
+tracing-subscriber = "0.3.7"
