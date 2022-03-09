@@ -5,7 +5,7 @@ use axum::{
     extract::Extension,
     response::{sse::Event, Sse},
     routing::get,
-    AddExtensionLayer, Router, Server,
+    Router, Server,
 };
 use futures_util::{Stream, StreamExt};
 use tokio::time;
@@ -31,7 +31,7 @@ async fn main() -> Result<()> {
     // Create an Axum handler that creates an SSE stream on the root path.
     let app = Router::new()
         .route("/", get(sse))
-        .layer(AddExtensionLayer::new(shutdown.clone()));
+        .layer(Extension(shutdown.clone()));
 
     // Create the server with a random port.
     let server = Server::bind(&([127, 0, 0, 1], 0).into()).serve(app.into_make_service());

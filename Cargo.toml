@@ -21,8 +21,8 @@ test = false
 default = ["tracing"]
 
 [dependencies]
-tokio = { version = "1.16.1", features = ["macros", "rt", "signal", "sync"] }
-tracing = { version = "0.1.29", optional = true }
+tokio = { version = "1.17.0", features = ["macros", "rt", "signal", "sync"] }
+tracing = { version = "0.1.31", optional = true }
 
 [target.'cfg(unix)'.dev-dependencies]
 nix = "0.23.1"
@@ -31,8 +31,8 @@ nix = "0.23.1"
 winapi = { version = "0.3.9", features = ["consoleapi", "wincon", "wincontypes"] }
 
 [dev-dependencies]
-anyhow = "1.0.53"
+anyhow = "1.0.56"
 async-stream = "0.3.2"
-axum = "0.4.4"
-futures-util = "0.3.19"
-tracing-subscriber = "0.3.7"
+axum = "0.4.8"
+futures-util = "0.3.21"
+tracing-subscriber = "0.3.9"
