@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - ReleaseDate
 
+### Changed
+
+- Reduces features on the `nix` crate, used during tests. ([#2](https://github.com/dnaka91/tokio-shutdown/pull/2))
+
 ## [0.1.1] - 2022-05-26
 
 ### Changed
