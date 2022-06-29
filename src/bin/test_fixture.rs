@@ -1,6 +1,8 @@
+use std::process::ExitCode;
+
 use tokio_shutdown::Shutdown;
 
-fn main() {
+fn main() -> ExitCode {
     tokio::runtime::Builder::new_current_thread()
         .enable_all()
         .build()
@@ -10,5 +12,5 @@ fn main() {
             shutdown.handle().await;
         });
 
-    std::process::exit(15);
+    ExitCode::from(15)
 }
