@@ -1,8 +1,6 @@
 [licenses]
 allow = []
 allow-osi-fsf-free = "both"
-
-[bans]
-skip = [
-    { name = "itoa", version = "=0.4.8" },
+exceptions = [
+	{ allow = ["Unicode-DFS-2016"], name = "unicode-ident" },
 ]
