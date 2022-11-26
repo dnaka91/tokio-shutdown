@@ -20,7 +20,7 @@ async fn main() -> Result<()> {
     let shutdown = Shutdown::new()?;
 
     // Create an Axum handler that returns plain text on the root path.
-    let app = Router::new().route("/", get(index));
+    let app = Router::new().route("/", get(index)).with_state(());
 
     // Create the server with a random port.
     let server = Server::bind(&([127, 0, 0, 1], 0).into()).serve(app.into_make_service());

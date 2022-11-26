@@ -2,7 +2,7 @@ use std::{convert::Infallible, time::Duration};
 
 use anyhow::Result;
 use axum::{
-    extract::Extension,
+    extract::{Extension, State},
     response::{sse::Event, Sse},
     routing::get,
     Router, Server,
@@ -31,7 +31,7 @@ async fn main() -> Result<()> {
     // Create an Axum handler that creates an SSE stream on the root path.
     let app = Router::new()
         .route("/", get(sse))
-        .layer(Extension(shutdown.clone()));
+        .with_state(shutdown.clone());
 
     // Create the server with a random port.
     let server = Server::bind(&([127, 0, 0, 1], 0).into()).serve(app.into_make_service());
@@ -55,7 +55,7 @@ async fn main() -> Result<()> {
 // The client connection will be handled gracefully, even in case of a shutdown. Once it's
 // initiated, the stream simply ends and the connection to the client is closed.
 pub async fn sse(
-    Extension(shutdown): Extension<Shutdown>,
+    State(shutdown): State<Shutdown>,
 ) -> Sse<impl Stream<Item = Result<Event, Infallible>>> {
     let stream = async_stream::stream! {
         let mut counter = 0;
