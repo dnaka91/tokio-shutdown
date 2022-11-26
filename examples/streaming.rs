@@ -2,7 +2,7 @@ use std::{convert::Infallible, time::Duration};
 
 use anyhow::Result;
 use axum::{
-    extract::{Extension, State},
+    extract::State,
     response::{sse::Event, Sse},
     routing::get,
     Router, Server,
