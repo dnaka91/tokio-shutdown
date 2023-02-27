@@ -30,13 +30,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Setup Rust (nightly)
-        uses: dtolnay/rust-toolchain@nightly
+        uses: dtolnay/rust-toolchain@master
         with:
           components: rustfmt
       - name: Run rustfmt
         run: cargo fmt -- --check
       - name: Setup Rust (stable)
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@master
         with:
           components: clippy
       - name: Configure cache
