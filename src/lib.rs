@@ -131,8 +131,8 @@ fn register_handlers() -> impl Future<Output = ()> {
 
     async {
         tokio::select! {
-            _ = ctrl_c => {},
-            _ = terminate => {},
+            () = ctrl_c => {},
+            () = terminate => {},
         }
 
         #[cfg(feature = "tracing")]
