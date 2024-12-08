@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - ReleaseDate
 
+- Update dependencies to their latest versions.
+- Bump MSRV to **1.70**.
+
 ## [0.1.4] - 2023-05-18
 
 - Update dependencies to their latest versions.
