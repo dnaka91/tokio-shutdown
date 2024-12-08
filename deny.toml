@@ -1,6 +1,8 @@
 [licenses]
-allow = []
-allow-osi-fsf-free = "both"
+allow = [
+	"Apache-2.0",
+	"MIT",
+]
 exceptions = [
-	{ allow = ["Unicode-DFS-2016"], name = "unicode-ident" },
+	{ allow = ["Unicode-3.0"], name = "unicode-ident" },
 ]
