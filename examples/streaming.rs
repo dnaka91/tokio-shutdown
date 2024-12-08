@@ -1,14 +1,14 @@
-use std::{convert::Infallible, time::Duration};
+use std::{convert::Infallible, net::Ipv6Addr, time::Duration};
 
 use anyhow::Result;
 use axum::{
     extract::State,
     response::{sse::Event, Sse},
     routing::get,
-    Router, Server,
+    Router,
 };
 use futures_util::{Stream, StreamExt};
-use tokio::time;
+use tokio::{net::TcpListener, time};
 use tokio_shutdown::Shutdown;
 use tracing::{info, Level};
 use tracing_subscriber::{filter::Targets, prelude::*};
@@ -34,17 +34,19 @@ async fn main() -> Result<()> {
         .with_state(shutdown.clone());
 
     // Create the server with a random port.
-    let server = Server::bind(&([127, 0, 0, 1], 0).into()).serve(app.into_make_service());
+    let listener = TcpListener::bind((Ipv6Addr::LOCALHOST, 0)).await?;
 
     // Print out process ID and listening address.
     // The ID is important to signal the server with a shutdown like `kill -s SIGINT <pid>`.
     // Try connecting to the server with `curl <address>`.
     info!("process ID is {}", std::process::id());
-    info!("listening on {}", server.local_addr());
+    info!("listening on {}", listener.local_addr()?);
 
     // Pass a shutown handle so the server stops receiving new requests and handles ongoing ones
     // nicely, once the signal is received.
-    server.with_graceful_shutdown(shutdown.handle()).await?;
+    axum::serve(listener, app)
+        .with_graceful_shutdown(shutdown.handle())
+        .await?;
 
     Ok(())
 }
