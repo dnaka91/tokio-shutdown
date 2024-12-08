@@ -1,9 +1,9 @@
+allow-branch = ["*"]
 sign-commit = true
 sign-tag = true
 
 pre-release-commit-message = "Bump up version to {{version}}"
 tag-message = "Version {{version}}"
-dev-version = false
 
 [[pre-release-replacements]]
 file = "CHANGELOG.md"
