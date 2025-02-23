@@ -1,10 +1,10 @@
 use std::net::Ipv6Addr;
 
 use anyhow::Result;
-use axum::{response::IntoResponse, routing::get, Router};
+use axum::{Router, response::IntoResponse, routing::get};
 use tokio::net::TcpListener;
 use tokio_shutdown::Shutdown;
-use tracing::{info, Level};
+use tracing::{Level, info};
 use tracing_subscriber::{filter::Targets, prelude::*};
 
 #[tokio::main(flavor = "current_thread")]

@@ -44,7 +44,6 @@
 use std::{
     error::Error,
     fmt::{self, Display},
-    future::Future,
     sync::atomic::{AtomicBool, Ordering},
 };
 
@@ -102,7 +101,7 @@ impl Shutdown {
 
     /// Create a new handle that can be awaited on. The future will complete once a shutdown signal
     /// is received.
-    pub fn handle(&self) -> impl Future<Output = ()> {
+    pub fn handle(&self) -> impl Future<Output = ()> + use<> {
         let mut rx = self.receiver.clone();
 
         async move {

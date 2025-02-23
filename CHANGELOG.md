@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - ReleaseDate
 
+- Update to Rust Edition 2024.
+- Bump MSRV to **1.85**.
+
 ## [0.1.5] - 2024-12-08
 
 - Update dependencies to their latest versions.

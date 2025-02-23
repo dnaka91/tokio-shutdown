@@ -2,15 +2,15 @@ use std::{convert::Infallible, net::Ipv6Addr, time::Duration};
 
 use anyhow::Result;
 use axum::{
-    extract::State,
-    response::{sse::Event, Sse},
-    routing::get,
     Router,
+    extract::State,
+    response::{Sse, sse::Event},
+    routing::get,
 };
 use futures_util::{Stream, StreamExt};
 use tokio::{net::TcpListener, time};
 use tokio_shutdown::Shutdown;
-use tracing::{info, Level};
+use tracing::{Level, info};
 use tracing_subscriber::{filter::Targets, prelude::*};
 
 #[tokio::main(flavor = "current_thread")]
